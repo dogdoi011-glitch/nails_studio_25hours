@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25hourswithnails - Press On Nails</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Fixed Compact Nav Bar -->
+    <nav class="pill-nav">
+        <div class="nav-logo">25hourswithnails</div>
+        <ul class="nav-links">
+            <li><a href="#how-to" data-th="HOW TO" data-en="HOW TO">HOW TO</a></li>
+            <li><a href="#catalog" data-th="CATALOG" data-en="CATALOG">CATALOG</a></li>
+            <li><a href="#promotion" data-th="PROMO" data-en="PROMO">PROMO</a></li>
+            <li><a href="#queue" data-th="QUEUE" data-en="QUEUE">QUEUE</a></li>
+            <li id="nav-order-item"><a href="#custom" data-th="ORDER" data-en="ORDER">ORDER</a></li>
+            <li><a href="#size" data-th="SIZE" data-en="SIZE">SIZE</a></li>
+            <li id="nav-reviews-item"><a href="#reviews" data-th="REVIEWS" data-en="REVIEWS">REVIEWS</a></li>
+        </ul>
+        <div class="nav-tools">
+            <button id="cart-icon-btn" class="cart-icon-btn" onclick="openCartModal()" title="Shopping Cart">
+                <span data-th="ตะกร้า" data-en="Cart">ตะกร้า</span>
+                <span id="cart-badge" class="cart-badge">0</span>
+            </button>
+            
+            <button id="track-icon-btn" class="track-icon-btn" onclick="openTrackingModal()" title="Track Orders">
+                <span data-th="ติดตามพัสดุ" data-en="Track">ติดตามพัสดุ</span>
+                <span id="track-badge" class="track-badge">0</span>
+            </button>
+
+            <span class="lang-switch">
+                <span id="lang-th" class="lang-btn active" onclick="switchLanguage('th')">TH</span>
+                <span class="lang-sep">|</span>
+                <span id="lang-en" class="lang-btn" onclick="switchLanguage('en')">EN</span>
+            </span>
+
+            <button id="user-icon-btn" class="user-icon-btn" onclick="openCustomerLoginModal()" title="Customer Login">
+                <span id="user-display-name">เข้าสู่ระบบ</span>
+            </button>
+            <button id="admin-icon-btn" class="user-icon-btn admin-badge-btn" onclick="openAdminLoginModal()" title="Admin Login">
+                <span id="admin-display-name">แอดมิน</span>
+            </button>
+            <button id="logout-btn" class="logout-btn" onclick="handleLogout()" style="display:none;" title="Logout">
+                <span data-th="ออก" data-en="Exit">ออก</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-fullscreen">
+        <img src="{{ url_for('static', filename='images/download (1).jpg') }}" class="bg-image" alt="Hero Background">
+        <div class="video-overlay"></div>
+        
+        <div class="hero-content">
+            <p class="tagline text-white" data-th="PRESS ON NAILS SHOP FROM THAILAND" data-en="PRESS ON NAILS SHOP FROM THAILAND">PRESS ON NAILS SHOP FROM THAILAND</p>
+            <h1 class="main-title text-white">25hourswithnails</h1>
+            <p class="sub-tagline text-white" data-th="ALL OF UR FAV CORE UNIVERSE" data-en="ALL OF UR FAV CORE UNIVERSE">ALL OF UR FAV CORE UNIVERSE</p>
+        </div>
+        
+        <div class="white-fade"></div>
+    </header>
+
+    <div class="site-wrapper">
+        
+        <!-- วิธีสั่งซื้อ -->
+        <section id="how-to" class="section-block mt-space">
+            <h2 class="section-header" data-th="วิธีสั่งซื้อ" data-en="HOW TO ORDER">วิธีสั่งซื้อ</h2>
+            <p class="text-center" data-th="เลือกแบบ • วัดไซส์ • ส่งรายละเอียด — แค่ 3 ขั้นตอน" data-en="Select Style • Measure Size • Submit Details — Only 3 Steps">เลือกแบบ • วัดไซส์ • ส่งรายละเอียด — แค่ 3 ขั้นตอน</p>
+            
+            <div class="grid-3">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <div class="organic-box text-center">
+                        <img src="{{ url_for('static', filename='images/download (2).jpg') }}" class="step-img" alt="เลือกแบบ">
+                    </div>
+                    <p class="text-center mt-10" data-th="เลือกแบบใน Catalog" data-en="Choose Style in Catalog">เลือกแบบใน Catalog</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <div class="organic-box text-center">
+                        <img src="{{ url_for('static', filename='images/download (3).jpg') }}" class="step-img" alt="วัดไซส์">
+                    </div>
+                    <p class="text-center mt-10" data-th="วัดไซส์นิ้วมือ" data-en="Measure Nail Size">วัดไซส์นิ้วมือ</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <div class="organic-box text-center">
+                        <img src="{{ url_for('static', filename='images/download (4).jpg') }}" class="step-img" alt="ส่งข้อมูล">
+                    </div>
+                    <p class="text-center mt-10" data-th="สั่งซื้อหรือส่งรูปให้ร้านประเมินราคาผ่านหน้าเว็บได้ทันที" data-en="Order or submit photos for custom price estimation on the website">
+                        สั่งซื้อหรือส่งรูปให้ร้านประเมินราคา<br>ผ่านหน้าเว็บได้ทันที
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROMOTION -->
+        <section id="promotion" class="section-block">
+            <h2 class="section-header" data-th="PROMOTION" data-en="PROMOTION">PROMOTION</h2>
+            <div class="grid-3">
+                <div class="organic-box text-center">
+                    <h3 class="mb-10" data-th="NEW MEMBER" data-en="NEW MEMBER">NEW MEMBER</h3>
+                    <p data-th="ส่วนลด 10% สำหรับออเดอร์แรก (WELCOME10)" data-en="10% OFF FIRST ORDER (WELCOME10)">ส่วนลด 10% สำหรับออเดอร์แรก<br><small>WELCOME10 (ใช้ได้ 1 ครั้ง/เบอร์โทร)</small></p>
+                </div>
+                <div class="organic-box text-center">
+                    <h3 class="mb-10" data-th="FREE SHIPPING" data-en="FREE SHIPPING">FREE SHIPPING</h3>
+                    <p data-th="ส่งฟรี เมื่อสั่งซื้อครบ 1,500 บาท" data-en="FREE SHIPPING ON ORDERS OVER 1,500 THB">ส่งฟรี เมื่อสั่งซื้อครบ 1,500 บาท<br><small>AUTO APPLY</small></p>
+                </div>
+                <div class="organic-box text-center">
+                    <h3 class="mb-10" data-th="REVIEW REWARD" data-en="REVIEW REWARD">REVIEW REWARD</h3>
+                    <p data-th="ส่วนลด 5% สำหรับผู้ที่เขียนรีวิว (REVIEW5)" data-en="5% OFF FOR REVIEWS (REVIEW5)">ส่วนลด 5% สำหรับผู้ที่เขียนรีวิว<br><small>REVIEW5 / CORE APPLY (ใช้ได้ 1 ครั้ง)</small></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATALOG (NEW DROP & IN-SALON SERVICES) -->
+        <section id="catalog" class="section-block">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2 class="section-header" style="margin-bottom: 0;" data-th="NEW DROP / CATALOG" data-en="NEW DROP / CATALOG">NEW DROP / CATALOG</h2>
+                <button id="add-service-btn" class="pill-btn admin-only-block" style="display:none;" onclick="openAddServiceModal('custom')">+ เพิ่มเล็บปลอมใหม่ (แอดมิน)</button>
+            </div>
+
+            <!-- ส่วนที่ 1: เล็บปลอมสำเร็จรูป (Press-On Sets) -->
+            <h3 style="font-size: 1.2rem; margin-bottom: 10px; border-left: 4px solid var(--line-green); padding-left: 10px;" data-th="💅 เล็บปลอมสำเร็จรูป (Press-On Sets)" data-en="💅 Press-On Sets">💅 เล็บปลอมสำเร็จรูป (Press-On Sets) <small style="font-weight:normal; font-size:0.85rem; color:#666;">(เลื่อนซ้าย-ขวา เพื่อดูสินค้าทั้งหมด)</small></h3>
+            <div class="carousel-container mb-20">
+                {% for s in press_on_services %}
+                <div class="organic-box product-card carousel-card" id="service-card-{{ s.id }}">
+                    <div>
+                        <div class="badge"><span data-th="เล็บปลอม" data-en="Press-On">เล็บปลอม</span></div>
+
+                        {% if s.image_path %}
+                            <img src="/{{ s.image_path }}" class="catalog-img" alt="{{ s.name }}">
+                        {% elif s.name == 'Press-On Set A' %}
+                            <img src="{{ url_for('static', filename='images/set_a.jpg') }}" class="catalog-img" alt="Press-On Set A">
+                        {% elif s.name == 'Press-On Set B' %}
+                            <img src="{{ url_for('static', filename='images/set_b.jpg') }}" class="catalog-img" alt="Press-On Set B">
+                        {% elif s.name == 'Press-On Set C' %}
+                            <img src="{{ url_for('static', filename='images/set_c.jpg') }}" class="catalog-img" alt="Press-On Set C">
+                        {% elif s.name == 'Custom Press-On (ประเมินราคา)' %}
+                            <img src="{{ url_for('static', filename='images/custom_set.jpg') }}" class="catalog-img" alt="Custom Press-On">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='images/custom_set.jpg') }}" class="catalog-img" alt="Press On">
+                        {% endif %}
+                        
+                        <h3 style="margin-top: 10px; font-size: 1.05rem;">{{ s.name }}</h3>
+
+                        <p class="price">
+                            {% if s.name == 'Custom Press-On (ประเมินราคา)' %}
+                                <span style="font-size:0.85rem; font-weight:normal;" data-th="เริ่มต้น 350.0 ฿ (อัปโหลดรูปประเมินราคา)" data-en="From 350.0 THB (Upload custom image)">
+                                    เริ่มต้น 350.0 ฿<br><small style="color:#666;">(อัปโหลดรูปภาพประเมินราคา)</small>
+                                </span>
+                            {% else %}
+                                <span>{{ s.price }} ฿</span>
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    {% if s.name == 'Custom Press-On (ประเมินราคา)' %}
+                        <button class="pill-btn cart-btn customer-only-btn" style="margin-top: 10px;" onclick="openCustomEstimateModal()">
+                            <span data-th="ส่งรูปประเมินราคา" data-en="Submit Custom Photo">ส่งรูปประเมินราคา</span>
+                        </button>
+                    {% else %}
+                        <button class="pill-btn cart-btn customer-only-btn" style="margin-top: 10px;" onclick="openAddCartModal('{{ s.name }}', {{ s.price }})">
+                            <span data-th="+ ใส่ตะกร้า" data-en="+ Add to Cart">+ ใส่ตะกร้า</span>
+                        </button>
+                    {% endif %}
+
+                    <div class="admin-only-block mt-10" style="display:none; text-align: center;">
+                        <div style="display:flex; gap: 5px; justify- content: center;">
+                            <button class="pill-btn" style="padding: 4px 10px; font-size: 0.75rem;" onclick="openEditServiceModal({{ s.id }}, '{{ s.name }}', {{ s.price }}, 'custom')">แก้ไข</button>
+                            <button class="delete-btn" style="padding: 4px 10px; font-size: 0.75rem;" onclick="deleteServiceItem({{ s.id }})">ลบ</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- ส่วนที่ 2: บริการทำเล็บหน้าร้าน (In-Salon Services) -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 25px; margin-bottom: 10px;">
+                <h3 style="font-size: 1.2rem; border-left: 4px solid var(--line-green); padding-left: 10px;" data-th="💈 บริการทำเล็บหน้าร้าน (In-Salon Services)" data-en="💈 In-Salon Services">💈 บริการทำเล็บหน้าร้าน (In-Salon Services) <small style="font-weight:normal; font-size:0.85rem; color:#666;">(เลื่อนซ้าย-ขวา เพื่อดูบริการทั้งหมด)</small></h3>
+                <button class="pill-btn admin-only-block" style="display:none; font-size: 0.85rem;" onclick="openAddServiceModal('booking')">+ เพิ่มบริการหน้าร้านใหม่ (แอดมิน)</button>
+            </div>
+            
+            <div class="carousel-container mb-20">
+                {% for s in booking_services %}
+                <div class="organic-box product-card carousel-card" id="service-card-{{ s.id }}" style="justify-content: space-between; min-height: 220px;">
+                    <div>
+                        <div class="badge"><span data-th="บริการที่ร้าน" data-en="In-Salon">บริการที่ร้าน</span></div>
+                        <h3 style="margin-top: 10px; font-size: 1.05rem;">{{ s.name }}</h3>
+                        <p class="price" style="margin-top: 8px;">
+                            {% if s.name == 'บริการต่อเล็บเจล + เพ้นท์ลาย' %}
+                                <span>เริ่มต้น 200.0 ฿ (2 ชม.ขึ้นไป)</span>
+                            {% elif s.name == 'ถอดเล็บ + ทำบำรุง' %}
+                                <span>200.0 ฿ (1 ชม.)</span>
+                            {% elif s.name == 'บริการต่อเล็บเจล + ติดอะไหล่' %}
+                                <span>เริ่มต้น 400.0 ฿ (3 ชม.ขึ้นไป)</span>
+                            {% elif s.name == 'ทาสีพื้น' %}
+                                <span>เริ่มต้น 150.0 ฿ (1 ชม.)</span>
+                            {% else %}
+                                <span>เริ่มต้น {{ s.price }} ฿</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <button class="pill-btn cart-btn customer-only-btn" style="margin-top: 10px;" onclick="selectForOrder('{{ s.name }}')">
+                            <span data-th="เลือกสั่งซื้อ / จองคิว" data-en="Select & Book">เลือกสั่งซื้อ / จองคิว</span>
+                        </button>
+
+                        <div class="admin-only-block mt-10" style="display:none; text-align: center;">
+                            <div style="display:flex; gap: 5px; justify-content: center;">
+                                <button class="pill-btn" style="padding: 4px 10px; font-size: 0.75rem;" onclick="openEditServiceModal({{ s.id }}, '{{ s.name }}', {{ s.price }}, 'booking')">แก้ไข</button>
+                                <button class="delete-btn" style="padding: 4px 10px; font-size: 0.75rem;" onclick="deleteServiceItem({{ s.id }})">ลบ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- QUEUE -->
+        <section id="queue" class="section-block">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2 class="section-header" style="margin-bottom: 0;" data-th="QUEUE" data-en="QUEUE">QUEUE</h2>
+                <button id="clear-all-btn" class="pill-btn danger-btn admin-only-col" style="display:none;" onclick="clearAllQueues()" data-th="ล้างคิวทั้งหมด" data-en="Clear All Queues">ล้างคิวทั้งหมด</button>
+            </div>
+
+            <div class="organic-box text-center">
+                <table class="organic-table">
+                    <thead>
+                        <tr>
+                            <th data-th="วันที่" data-en="Date">วันที่</th>
+                            <th data-th="เวลา" data-en="Time">เวลา</th>
+                            <th data-th="ชื่อลูกค้า" data-en="Customer">ชื่อลูกค้า</th>
+                            <th data-th="รายการที่จอง" data-en="Service">รายการที่จอง</th>
+                            <th data-th="ไซส์เล็บ" data-en="Size">ไซส์เล็บ</th>
+                            <th class="admin-only-col" style="display:none;" data-th="IG / LINE" data-en="IG / LINE">IG / LINE</th>
+                            <th class="admin-only-col" style="display:none;" data-th="สลิปโอนเงิน" data-en="Payment Slip">สลิปโอนเงิน</th>
+                            <th class="admin-only-col" style="display:none;" data-th="จัดการคิว" data-en="Action">จัดการคิว</th>
+                        </tr>
+                    </thead>
+                    <tbody id="queueTableBody">
+                        {% if booking_queues %}
+                            {% for q in booking_queues %}
+                            <tr id="queue-row-{{ q.id }}" data-id="{{ q.id }}" data-raw-name="{{ q.name or (q.fname ~ ' ' ~ q.lname) }}" data-phone="{{ q.phone or '' }}" data-ig="{{ q.ig_line or '-' }}" data-date="{{ q.date }}" data-time="{{ q.time }}" data-service="{{ q.service }}">
+                                <td class="col-date">{{ q.date }}</td>
+                                <td class="col-time">{{ q.time }}</td>
+                                <td class="col-name">{{ q.name or (q.fname ~ ' ' ~ q.lname) }}</td>
+                                <td class="col-service">{{ q.service }}</td>
+                                <td class="col-size">{{ q.size or '-' }}</td>
+                                <td class="col-ig admin-only-col" style="display:none;">{{ q.ig_line or '-' }}</td>
+                                <td class="col-slip admin-only-col" style="display:none;">
+                                    {% if q.slip_path %}
+                                    <a href="/{{ q.slip_path }}" target="_blank" class="slip-link-btn" data-th="ดูสลิป" data-en="View Slip">ดูสลิป</a>
+                                    {% else %}
+                                    -
+                                    {% endif %}
+                                </td>
+                                <td class="col-action admin-only-col" style="display:none;">
+                                    <button class="delete-btn" onclick="deleteSingleQueue({{ q.id }})" data-th="ลบคิว" data-en="Delete">ลบคิว</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr id="emptyQueueRow">
+                                <td colspan="8" style="color:#888; padding: 20px;" data-th="ยังไม่มีรายการคิวจองในขณะนี้" data-en="No queue items at the moment">ยังไม่มีรายการคิวจองในขณะนี้</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+
+                <button id="toggleQueueBtn" class="pill-btn secondary-btn mt-10" style="display:none;" onclick="toggleQueueExpansion()" data-th="ดูคิวทั้งหมด" data-en="View All Queues">
+                    ดูคิวทั้งหมด
+                </button>
+            </div>
+        </section>
+
+        <!-- 1. แผงแอดมิน: อนุมัติคิวจองหน้าร้าน -->
+        <section id="owner-pending-salon" class="section-block admin-only-block" style="display:none;">
+            <h2 class="section-header" data-th="อนุมัติคิวจองทำเล็บหน้าร้าน (แอดมิน)" data-en="Approve Salon Bookings (Admin)">อนุมัติคิวจองทำเล็บหน้าร้าน (แอดมิน)</h2>
+            <div class="search-bar-box">
+                <input type="text" id="search-pending-salon" class="pill-input" placeholder="🔍 ค้นหาชื่อลูกค้า, เบอร์โทร, บริการ..." onkeyup="filterAndPaginateTable('pendingSalonTableBody', 'search-pending-salon', 'pagination-pending-salon', 5)">
+            </div>
+            <div class="organic-box text-center">
+                <table class="organic-table">
+                    <thead>
+                        <tr>
+                            <th data-th="ชื่อลูกค้า" data-en="Customer">ชื่อลูกค้า</th>
+                            <th data-th="เบอร์โทร" data-en="Phone">เบอร์โทร</th>
+                            <th data-th="บริการ" data-en="Service">บริการ</th>
+                            <th data-th="วันที่ / เวลา" data-en="Date / Time">วันที่ / เวลา</th>
+                            <th data-th="สลิปโอนมัดจำ" data-en="Deposit Slip">สลิปโอนมัดจำ</th>
+                            <th data-th="จัดการอนุมัติ" data-en="Action">จัดการอนุมัติ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pendingSalonTableBody">
+                        {% if pending_salon_queues %}
+                            {% for ps in pending_salon_queues %}
+                            <tr id="pending-salon-row-{{ ps.id }}">
+                                <td><strong>{{ ps.name }}</strong></td>
+                                <td>{{ ps.phone }}</td>
+                                <td>{{ ps.service }}</td>
+                                <td>{{ ps.date }} ({{ ps.time }})</td>
+                                <td>
+                                    {% if ps.slip_path %}
+                                    <a href="/{{ ps.slip_path }}" target="_blank" class="slip-link-btn" data-th="ตรวจสลิป" data-en="Check Slip">ตรวจสลิป</a>
+                                    {% else %}
+                                    -
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <button class="pill-btn" style="padding: 6px 14px; font-size: 0.85rem;" onclick="approveSalonBooking({{ ps.id }})" data-th="อนุมัติคิว" data-en="Approve">อนุมัติคิว</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr id="emptySalonPendingRow">
+                                <td colspan="6" style="color:#888; padding: 20px;" data-th="ไม่มีรายการจองหน้าร้านที่รอตรวจสอบสลิป" data-en="No pending salon bookings">ไม่มีรายการจองหน้าร้านที่รอตรวจสอบสลิป</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div id="pagination-pending-salon" class="pagination-container"></div>
+            </div>
+        </section>
+
+        <!-- 2. แผงแอดมิน: จัดการสถานะจัดส่ง & เลขพัสดุ -->
+        <section id="owner-delivery-management" class="section-block admin-only-block" style="display:none;">
+            <h2 class="section-header" data-th="จัดการสถานะจัดส่ง & เลขพัสดุ (แอดมิน)" data-en="Manage Delivery & Tracking (Admin)">จัดการสถานะจัดส่ง & เลขพัสดุ (แอดมิน)</h2>
+            <div class="search-bar-box">
+                <input type="text" id="search-delivery" class="pill-input" placeholder="🔍 ค้นหาออเดอร์ ID, ชื่อลูกค้า, เบอร์โทร, เลขพัสดุ..." onkeyup="filterAndPaginateTable('deliveryTableBody', 'search-delivery', 'pagination-delivery', 5)">
+            </div>
+            <div class="organic-box text-center">
+                <table class="organic-table">
+                    <thead>
+                        <tr>
+                            <th data-th="ออเดอร์ ID" data-en="Order ID">ออเดอร์ ID</th>
+                            <th data-th="ชื่อลูกค้า" data-en="Customer">ชื่อลูกค้า</th>
+                            <th data-th="รายการสินค้า" data-en="Service">รายการสินค้า</th>
+                            <th data-th="ที่อยู่จัดส่ง" data-en="Address">ที่อยู่จัดส่ง</th>
+                            <th data-th="สลิปโอนเงิน" data-en="Slip">สลิปโอนเงิน</th>
+                            <th data-th="อนุมัติสลิป" data-en="Approve Slip">อนุมัติสลิป</th>
+                            <th data-th="สถานะจัดส่ง" data-en="Status">สถานะจัดส่ง</th>
+                            <th data-th="เลขพัสดุ" data-en="Tracking No.">เลขพัสดุ</th>
+                            <th data-th="จัดการ" data-en="Action">จัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="deliveryTableBody">
+                        {% if delivery_queues %}
+                            {% for q in delivery_queues %}
+                            <tr id="delivery-row-{{ q.id }}">
+                                <td>#{{ q.id }}</td>
+                                <td><strong>{{ q.name }}</strong><br><small>{{ q.phone }}</small></td>
+                                <td>{{ q.service }} ({{ q.size or 'M' }})</td>
+                                <td style="font-size:0.85rem; text-align:left;">{{ q.address or 'ไม่ระบุ' }}</td>
+                                <td>
+                                    {% if q.slip_path %}
+                                    <a href="/{{ q.slip_path }}" target="_blank" class="slip-link-btn" data-th="ตรวจสลิป" data-en="Check Slip">ตรวจสลิป</a>
+                                    {% else %}
+                                    -
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if q.status == 'pending_presson_approval' %}
+                                    <button class="pill-btn" style="padding: 4px 10px; font-size: 0.78rem; background: var(--accent-green);" onclick="approvePressOnOrder({{ q.id }})" data-th="อนุมัติสลิป" data-en="Approve Slip">อนุมัติสลิป</button>
+                                    {% else %}
+                                    <span style="color:var(--line-green); font-weight:bold; font-size:0.8rem;" data-th="อนุมัติแล้ว" data-en="Approved">✓ อนุมัติแล้ว</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <select id="delivery-status-select-{{ q.id }}" class="pill-input" style="padding: 4px 10px; font-size: 0.85rem;" {% if q.status == 'pending_presson_approval' %}disabled{% endif %}>
+                                        <option value="กำลังเตรียมจัดส่ง" {% if q.delivery_status == 'กำลังเตรียมจัดส่ง' %}selected{% endif %}>กำลังเตรียมจัดส่ง</option>
+                                        <option value="กำลังจัดส่ง" {% if q.delivery_status == 'กำลังจัดส่ง' %}selected{% endif %}>กำลังจัดส่ง</option>
+                                        <option value="ส่งเรียบร้อย" {% if q.delivery_status == 'ส่งเรียบร้อย' %}selected{% endif %}>ส่งเรียบร้อย</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" id="tracking-input-{{ q.id }}" class="pill-input" style="padding: 4px 10px; font-size: 0.85rem; width: 130px;" value="{{ q.tracking_number or '-' }}" {% if q.status == 'pending_presson_approval' %}disabled{% endif %}>
+                                </td>
+                                <td>
+                                    <div style="display:flex; gap:5px; justify-content:center;">
+                                        <button class="pill-btn" style="padding: 5px 10px; font-size: 0.78rem;" onclick="saveDeliveryStatus({{ q.id }})" data-th="บันทึก" data-en="Save" {% if q.status == 'pending_presson_approval' %}disabled style="opacity:0.5;"{% endif %}>บันทึก</button>
+                                        <button class="delete-btn" style="padding: 5px 8px; font-size: 0.78rem;" onclick="deleteDeliveryOrder({{ q.id }})" data-th="ลบ" data-en="Delete">ลบ</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr id="emptyDeliveryRow">
+                                <td colspan="9" style="color:#888; padding: 20px;" data-th="ยังไม่มีรายการสั่งเล็บปลอมที่ต้องจัดส่ง" data-en="No press-on orders to deliver">ยังไม่มีรายการสั่งเล็บปลอมที่ต้องจัดส่ง</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div id="pagination-delivery" class="pagination-container"></div>
+            </div>
+        </section>
+
+        <!-- 3. แผงแอดมิน: อนุมัติ Custom -->
+        <section id="owner-pending-customs" class="section-block admin-only-block" style="display:none;">
+            <h2 class="section-header" data-th="รายการ Custom เล็บปลอม (รอประเมินราคา)" data-en="Pending Custom Press-On Price Approvals">รายการ Custom เล็บปลอม (รอประเมินราคา)</h2>
+            <div class="search-bar-box">
+                <input type="text" id="search-customs" class="pill-input" placeholder="🔍 ค้นหาชื่อลูกค้า, เบอร์โทร, IG/LINE..." onkeyup="filterAndPaginateTable('pendingCustomTableBody', 'search-customs', 'pagination-customs', 5)">
+            </div>
+            <div class="organic-box text-center">
+                <table class="organic-table">
+                    <thead>
+                        <tr>
+                            <th data-th="ชื่อลูกค้า" data-en="Customer">ชื่อลูกค้า</th>
+                            <th data-th="IG / LINE" data-en="IG / LINE">IG / LINE</th>
+                            <th data-th="เบอร์โทร" data-en="Phone">เบอร์โทร</th>
+                            <th data-th="ไซส์เล็บ" data-en="Size">ไซส์เล็บ</th>
+                            <th data-th="ที่อยู่จัดส่ง" data-en="Address">ที่อยู่จัดส่ง</th>
+                            <th data-th="รูปภาพแบบเล็บ" data-en="Custom Photo">รูปภาพแบบเล็บ</th>
+                            <th data-th="ราคาประเมิน" data-en="Price (THB)">ราคาประเมิน</th>
+                            <th data-th="ค่าจัดส่ง" data-en="Shipping">ค่าจัดส่ง</th>
+                            <th data-th="อนุมัติ" data-en="Action">อนุมัติ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pendingCustomTableBody">
+                        {% if pending_customs %}
+                            {% for pc in pending_customs %}
+                            <tr id="pending-custom-row-{{ pc.id }}">
+                                <td><strong>{{ pc.name }}</strong></td>
+                                <td>{{ pc.ig_line }}</td>
+                                <td>{{ pc.phone }}</td>
+                                <td><code>{{ pc.size }}</code></td>
+                                <td style="font-size:0.85rem; text-align:left;">{{ pc.address }}</td>
+                                <td>
+                                    <a href="/{{ pc.custom_img_path }}" target="_blank">
+                                        <img src="/{{ pc.custom_img_path }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border:1px solid var(--line-green);">
+                                    </a>
+                                </td>
+                                <td>
+                                    <input type="number" id="price-input-{{ pc.id }}" class="pill-input" style="width: 100px; padding: 6px; text-align: center;" value="{{ pc.price or 350 }}">
+                                </td>
+                                <td>
+                                    <input type="number" id="shipping-input-{{ pc.id }}" class="pill-input" style="width: 80px; padding: 6px; text-align: center;" value="{{ pc.shipping_fee or 50 }}">
+                                </td>
+                                <td>
+                                    <button class="pill-btn" style="padding: 6px 14px; font-size: 0.85rem;" onclick="approveCustomPrice({{ pc.id }})" data-th="อนุมัติราคา" data-en="Approve">อนุมัติราคา</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr id="emptyPendingRow">
+                                <td colspan="9" style="color:#888; padding: 20px;" data-th="ไม่มีรายการ Custom ที่รออนุมัติราคา" data-en="No custom items awaiting approval">ไม่มีรายการ Custom ที่รออนุมัติราคา</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div id="pagination-customs" class="pagination-container"></div>
+            </div>
+        </section>
+
+        <!-- 4. แผงแอดมิน: ฐานข้อมูลลูกค้า -->
+        <section id="owner-customer-list" class="section-block admin-only-block" style="display:none;">
+            <h2 class="section-header" data-th="รายชื่อลูกค้าทั้งหมด (แอดมิน)" data-en="All Customers List (Admin)">รายชื่อลูกค้าทั้งหมด (แอดมิน)</h2>
+            <div class="search-bar-box">
+                <input type="text" id="search-customers" class="pill-input" placeholder="🔍 ค้นหาชื่อ - นามสกุล, เบอร์โทรศัพท์, IG/LINE..." onkeyup="filterAndPaginateTable('customerTableBody', 'search-customers', 'pagination-customers', 5)">
+            </div>
+            <div class="organic-box text-center">
+                <table class="organic-table">
+                    <thead>
+                        <tr>
+                            <th data-th="ชื่อ - นามสกุล" data-en="Name">ชื่อ - นามสกุล</th>
+                            <th data-th="IG / LINE" data-en="IG / LINE">IG / LINE</th>
+                            <th data-th="เบอร์โทรศัพท์" data-en="Phone">เบอร์โทรศัพท์</th>
+                            <th data-th="รหัสผ่าน" data-en="Password">รหัสผ่าน</th>
+                            <th data-th="จัดการ" data-en="Action">จัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customerTableBody">
+                        {% if customers %}
+                            {% for c in customers %}
+                            <tr id="customer-row-{{ c.id }}" data-phone="{{ c.phone }}">
+                                <td><strong>{{ c.fname }} {{ c.lname }}</strong></td>
+                                <td>{{ c.ig_line }}</td>
+                                <td>{{ c.phone }}</td>
+                                <td><code>{{ c.password or '123456' }}</code></td>
+                                <td>
+                                    <button class="delete-btn" onclick="deleteCustomer({{ c.id }})" data-th="ลบลูกค้า" data-en="Delete">ลบลูกค้า</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="5" style="color:#888; padding: 20px;" data-th="ยังไม่มีข้อมูลลูกค้าในระบบ" data-en="No customer data">ยังไม่มีข้อมูลลูกค้าในระบบ</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div id="pagination-customers" class="pagination-container"></div>
+            </div>
+        </section>
+
+        <!-- BOOKING ORDER FORM -->
+        <section id="custom" class="section-block">
+            <h2 class="section-header" data-th="BOOKING ORDER (บริการทำเล็บที่ร้าน)" data-en="BOOKING ORDER (In-Salon)">BOOKING ORDER (บริการทำเล็บที่ร้าน)</h2>
+            <p class="text-center mb-20" data-th="เลือกบริการ จองรอบเวลา และชำระมัดจำคิว" data-en="Select service, pick time slot, and pay deposit">เลือกบริการ จองรอบเวลา และชำระมัดจำคิว</p>
+
+            <div class="organic-box form-container mb-20">
+                <form id="orderForm" onsubmit="event.preventDefault(); openPaymentModal();">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label data-th="ชื่อจริง *" data-en="First Name *">ชื่อจริง *</label>
+                            <input type="text" id="cust_fname" class="pill-input" required placeholder="ชื่อจริงของคุณ">
+                        </div>
+                        <div class="form-group">
+                            <label data-th="นามสกุล *" data-en="Last Name *">นามสกุล *</label>
+                            <input type="text" id="cust_lname" class="pill-input" required placeholder="นามสกุล">
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label data-th="ชื่อ IG หรือ LINE ID *" data-en="IG or LINE ID *">ชื่อ IG หรือ LINE ID *</label>
+                            <input type="text" id="cust_ig_line" class="pill-input" required placeholder="@your_ig หรือ Line ID">
+                        </div>
+                        <div class="form-group">
+                            <label data-th="เบอร์โทรศัพท์ *" data-en="Phone Number *">เบอร์โทรศัพท์ *</label>
+                            <input type="tel" id="cust_phone" class="pill-input" pattern="[0-9]{9,10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required placeholder="08X-XXX-XXXX" onblur="fetchUserPendingPayments()">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-th="เลือกบริการทำเล็บ *" data-en="Select Service *">เลือกบริการทำเล็บ *</label>
+                        <select id="cust_service" class="pill-input" onchange="checkServiceType(); updateAvailableSlots();" required>
+                            <option value="" disabled selected data-th="-- กรุณาเลือกรายการบริการ --" data-en="-- Select Service --">-- กรุณาเลือกรายการบริการ --</option>
+                            {% for s in booking_services %}
+                                <option value="{{ s.name }}" data-price="{{ s.price }}" data-category="{{ s.category }}">
+                                    {{ s.name }} ({% if s.name == 'ถอดเล็บ + ทำบำรุง' %}200.0 ฿ - 1 ชม.{% elif s.name == 'บริการต่อเล็บเจล + เพ้นท์ลาย' %}เริ่มต้น 200.0 ฿ - 2 ชม.ขึ้นไป{% elif s.name == 'บริการต่อเล็บเจล + ติดอะไหล่' %}เริ่มต้น 400.0 ฿ - 3 ชม.ขึ้นไป{% elif s.name == 'ทาสีพื้น' %}เริ่มต้น 150.0 ฿ - 1 ชม.{% else %}เริ่มต้น {{ s.price }} ฿{% endif %})
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div id="booking_fields" style="display: none;">
+                        <div class="form-group">
+                            <label data-th="วันที่เข้ารับบริการ *" data-en="Service Date *">วันที่เข้ารับบริการ *</label>
+                            <input type="date" id="book_date" class="pill-input" onchange="updateAvailableSlots()">
+                        </div>
+                        <div class="form-group">
+                            <label data-th="เลือกรอบเวลา (09:00 - 21:00 น.) *" data-en="Select Time Slot (09:00 - 21:00) *">เลือกรอบเวลา (09:00 - 21:00 น.) *</label>
+                            <select id="book_time" class="pill-input">
+                                <option value="" disabled selected data-th="-- กรุณาเลือกรอบเวลา --" data-en="-- Select Time Slot --">-- กรุณาเลือกรอบเวลา --</option>
+                                <option value="09:00">09:00 น.</option>
+                                <option value="10:00">10:00 น.</option>
+                                <option value="11:00">11:00 น.</option>
+                                <option value="12:00">12:00 น.</option>
+                                <option value="13:00">13:00 น.</option>
+                                <option value="14:00">14:00 น.</option>
+                                <option value="15:00">15:00 น.</option>
+                                <option value="16:00">16:00 น.</option>
+                                <option value="17:00">17:00 น.</option>
+                                <option value="18:00">18:00 น.</option>
+                                <option value="19:00">19:00 น.</option>
+                                <option value="20:00">20:00 น.</option>
+                            </select>
+                        </div>
+                        <p style="color:#A33A3A; font-size:0.85rem; margin-top: -5px; margin-bottom: 10px;" data-th="หมายเหตุ: บริการทำที่ร้าน ชำระมัดจำ 100 บาท (หากมาเลทเกิน 15 นาที หรือไม่แจ้งเลื่อนเวลา มัดจำจะถูกริบ)" data-en="Note: 100 THB deposit required for in-salon service.">
+                            หมายเหตุ: บริการทำที่ร้าน ชำระมัดจำ 100 บาท (หากมาเลทเกิน 15 นาที หรือไม่แจ้งเลื่อนเวลา มัดจำจะถูกริบ)
+                        </p>
+                    </div>
+
+                    <button type="submit" class="pill-btn full-width mt-10" style="padding: 15px;" data-th="สแกนจ่าย & แนบสลิป" data-en="Scan QR & Upload Slip">สแกนจ่าย & แนบสลิป</button>
+                </form>
+            </div>
+
+            <!-- แผนที่หน้าร้าน -->
+            <div class="organic-box" style="background: #FFF; border: 2px solid var(--line-green); text-align: center; padding: 20px;">
+                <h3 style="font-size: 1.2rem; color: var(--line-green); margin-bottom: 8px;" data-th="📍 แผนที่ & พิกัดสถานที่ตั้งหน้าร้าน" data-en="📍 Salon Location Map & Directions">📍 แผนที่ & พิกัดสถานที่ตั้งหน้าร้าน</h3>
+                <p style="font-size: 0.95rem; color: #444; margin-bottom: 12px;" data-th="ที่อยู่หน้าร้าน: ซอยโต้งพรรณา ต.ในเมือง อ.เมือง จ.ขอนแก่น 40000" data-en="Address: Soi Tongpanna, Nai Mueang, Muang Khon Kaen 40000">
+                    <strong>ที่อยู่หน้าร้าน:</strong> ซอยโต้งพรรณา ต.ในเมือง อ.เมือง จ.ขอนแก่น 40000
+                </p>
+                <div style="width: 100%; max-width: 700px; height: 260px; margin: 0 auto 12px auto; border-radius: 15px; overflow: hidden; border: 2px solid var(--line-green);">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Soi+Tongpanna,+Tambon+Nai+Mueang,+Muang,+Khon+Kaen+40000&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <a href="https://www.google.com/maps?sca_esv=bcdf9297374b6ca0&rlz=1C1GCEA_enTH1183TH1183&sxsrf=APpeQnthaknwISbsAHRbZnnfSsQHwRvBog:1791989224983&biw=1536&bih=730&uact=5&gs_lp=Egxnd3Mtd2l6LXNlcnAiCmJzcGFjZSBra24yAhAmMggQABiABBiiBDIFEAAY7wUyBRAAGO8FMggQABiABBiiBDIFEAAY7wVI2g9QkwRY3wxwAXgBkAEAmAGqAaAB6AOqAQMxLjO4AQPIAQD4AQGYAgWgAokEwgIKEAAYRxjWBBiwA8ICDRAAGIAEGIoFGEMYsAPCAgUQABiABMICEBAuGIAEGIoFGEMYxwEYrwHCAgoQABiABBiKBRhDwgILEC4YgAQYxwEYrwHCAgkQABiABBgKGAvCAgkQLhiABBgKGAvCAgcQLhiABBgNwgIJEAAYgAQYDRgKwgIHEAAYgAQYDcICBhAAGB4YDcICBhAAGBYYHsICCBAAGAUYHhgNwgIWEC4YgAQYDRiXBRjcBBjeBBjgBNgBAZgDAIgGAZAGCLoGBggBEAEYFJIHAzEuNKAH5RuyBwMwLjS4B4IEwgcDMi01yAcUgAgB&um=1&ie=UTF8&fb=1&gl=th&sa=X&geocode=KYtBTlQyiyIxMVLpp8MaSgnH&daddr=Soi+Tongpanna,+Tambon+Nai+Mueang,+Muang,+Khon+Kaen+40000" 
+                   target="_blank" 
+                   class="pill-btn" 
+                   style="display: inline-block; text-decoration: none; padding: 8px 20px; font-size: 0.9rem;"
+                   data-th="🗺️ เปิดใน Google Maps นำทาง" data-en="🗺️ Open in Google Maps">
+                   🗺️ เปิดใน Google Maps นำทาง
+                </a>
+            </div>
+        </section>
+
+        <!-- SIZE GUIDE -->
+        <section id="size" class="section-block">
+            <h2 class="section-header" data-th="SIZE GUIDE" data-en="SIZE GUIDE">SIZE GUIDE</h2>
+            <div class="organic-box text-center">
+                <table class="organic-table">
+                    <thead>
+                        <tr><th>Size</th><th>Thumb</th><th>Index</th><th>Middle</th><th>Ring</th><th>Pinky</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>XS</td><td>1.1 cm</td><td>0.7 cm</td><td>0.8 cm</td><td>0.7 cm</td><td>0.6 cm</td></tr>
+                        <tr><td>S</td><td>1.2 cm</td><td>0.8 cm</td><td>0.9 cm</td><td>0.8 cm</td><td>0.65 cm</td></tr>
+                        <tr><td>M</td><td>1.3 cm</td><td>0.9 cm</td><td>1.0 cm</td><td>0.9 cm</td><td>0.7 cm</td></tr>
+                        <tr><td>L</td><td>1.4 cm</td><td>1.0 cm</td><td>1.1 cm</td><td>1.0 cm</td><td>0.8 cm</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="section-block">
+            <h2 class="section-header" data-th="REVIEWS & FEEDBACK" data-en="REVIEWS & FEEDBACK">REVIEWS & FEEDBACK</h2>
+            <p class="text-center mb-20" data-th="เขียนรีวิวการใช้งาน รับโค้ดส่วนลด 5% ทันที! (ใช้ได้ 1 ครั้ง/บัญชี)" data-en="Write a review and get 5% OFF discount code! (1 time per account)">เขียนรีวิวการใช้งาน รับโค้ดส่วนลด 5% ทันที! (ใช้ได้ 1 ครั้ง/บัญชี)</p>
+
+            <div class="organic-box form-container mb-20" style="background: #FFF; border: 2px solid var(--line-green);">
+                <h3 class="text-center mb-10" style="font-size: 1.2rem;" data-th="✍️ เขียนรีวิวของคุณ" data-en="✍️ Write Your Review">✍️ เขียนรีวิวของคุณ</h3>
+                <form onsubmit="event.preventDefault(); submitUserReview();">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;" class="mb-10">
+                        <input type="text" id="rev_name" class="pill-input" required placeholder="ชื่อของคุณ *" data-th="ชื่อของคุณ *" data-en="Your Name *">
+                        <input type="tel" id="rev_phone" class="pill-input" pattern="[0-9]{9,10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required placeholder="เบอร์โทรศัพท์ *" data-th="เบอร์โทรศัพท์ *" data-en="Phone Number *">
+                    </div>
+                    <div class="form-group mb-10">
+                        <label data-th="ให้คะแนนบริการ *" data-en="Rating *">ให้คะแนนบริการ *</label>
+                        <select id="rev_rating" class="pill-input">
+                            <option value="5">⭐⭐⭐⭐⭐ (5 ดาว - ประทับใจมาก)</option>
+                            <option value="4">⭐⭐⭐⭐ (4 ดาว - ดีมาก)</option>
+                            <option value="3">⭐⭐⭐ (3 ดาว - ปานกลาง)</option>
+                            <option value="2">⭐⭐ (2 ดาว - พอใช้)</option>
+                            <option value="1">⭐ (1 ดาว - ควรปรับปรุง)</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-10">
+                        <label data-th="คำรีวิวความประทับใจ *" data-en="Your Feedback *">คำรีวิวความประทับใจ *</label>
+                        <textarea id="rev_comment" class="pill-input" style="height: 80px; border-radius: 15px;" required placeholder="พิมพ์ความรู้สึก หรือคำติชมของคุณได้ที่นี่..." data-th="พิมพ์ความรู้สึก หรือคำติชมของคุณได้ที่นี่..." data-en="Write your comments here..."></textarea>
+                    </div>
+                    <div class="form-group mb-10">
+                        <label data-th="อัปโหลดรูปภาพผลงานเล็บ (ไม่บังคับ)" data-en="Upload Photo (Optional)">อัปโหลดรูปภาพผลงานเล็บ (ไม่บังคับ)</label>
+                        <input type="file" id="rev_image" class="pill-input" accept="image/*" style="padding: 8px 15px;">
+                    </div>
+                    <button type="submit" class="pill-btn full-width" style="padding: 12px;" data-th="ส่งรีวิวเพื่อรับส่วนลด 5%" data-en="Submit Review & Get 5% OFF">ส่งรีวิวเพื่อรับส่วนลด 5%</button>
+                </form>
+            </div>
+
+            <div class="carousel-container">
+                {% if reviews %}
+                    {% for r in reviews %}
+                    <div class="organic-box carousel-card" style="background:#FFF; width: 280px; text-align: left; padding: 15px; display:flex; flex-direction:column; justify-content:space-between;">
+                        <div>
+                            {% if r.image_path %}
+                            <img src="/{{ r.image_path }}" style="width:100%; height:160px; object-fit:cover; border-radius:12px; margin-bottom:10px; border:1px solid var(--line-green);">
+                            {% endif %}
+                            <div style="color: #E0A800; font-size: 1.1rem; margin-bottom: 5px;">
+                                {% for i in range(r.rating) %}★{% endfor %}
+                            </div>
+                            <p style="font-size: 0.9rem; color: #333; line-height: 1.4; font-style: italic;">"{{ r.comment }}"</p>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.8rem; color: #666; border-top: 1px dashed #DDD; padding-top: 6px;">
+                            <strong>คุณ {{ r.name | mask_name }}</strong>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p style="color:#888; text-align:center; width: 100%; padding: 20px;" data-th="ยังไม่มีคำรีวิวร่วมแชร์ประสบการณ์ มาเป็นคนแรกที่รีวิวกันเลย!" data-en="No reviews yet. Be the first to review!">ยังไม่มีคำรีวิวร่วมแชร์ประสบการณ์ มาเป็นคนแรกที่รีวิวกันเลย!</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- DASHBOARD สรุปยอดขาย (แอดมิน) : ย้ายมาไว้ล่างสุดของหน้า -->
+        <section id="owner-sales-dashboard" class="section-block admin-only-block" style="display:none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 8px;">
+                <h2 class="section-header" style="margin-bottom: 0;" data-th="📊 สรุปยอดขาย (แอดมิน)" data-en="📊 Sales Dashboard (Admin)">📊 สรุปยอดขาย (แอดมิน)</h2>
+                <div>
+                    <select class="pill-input" style="width: auto; padding: 5px 12px; font-size: 0.85rem;" onchange="filterSalesRange(this.value)">
+                        <option value="all">แสดงทั้งหมด</option>
+                        <option value="daily">รายวัน (วันนี้)</option>
+                        <option value="weekly">รายสัปดาห์ (7 วัน)</option>
+                        <option value="monthly">รายเดือน (30 วัน)</option>
+                        <option value="yearly">รายปี (365 วัน)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid-3" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <div class="organic-box text-center sales-card" id="sales-card-daily" style="background: #FFF;">
+                    <h4 style="color:#666; font-size:0.85rem; margin-bottom: 5px;">ยอดขายรายวัน (วันนี้)</h4>
+                    <h2 id="sales-daily" style="color:var(--line-green); font-size:1.8rem; font-weight:bold;">0 ฿</h2>
+                </div>
+                <div class="organic-box text-center sales-card" id="sales-card-weekly" style="background: #FFF;">
+                    <h4 style="color:#666; font-size:0.85rem; margin-bottom: 5px;">ยอดขายรายสัปดาห์ (7 วันล่าสุด)</h4>
+                    <h2 id="sales-weekly" style="color:var(--line-green); font-size:1.8rem; font-weight:bold;">0 ฿</h2>
+                </div>
+                <div class="organic-box text-center sales-card" id="sales-card-monthly" style="background: #FFF;">
+                    <h4 style="color:#666; font-size:0.85rem; margin-bottom: 5px;">ยอดขายรายเดือน (30 วันล่าสุด)</h4>
+                    <h2 id="sales-monthly" style="color:var(--line-green); font-size:1.8rem; font-weight:bold;">0 ฿</h2>
+                </div>
+                <div class="organic-box text-center sales-card" id="sales-card-yearly" style="background: #FFF;">
+                    <h4 style="color:#666; font-size:0.85rem; margin-bottom: 5px;">ยอดขายรายปี (365 วันล่าสุด)</h4>
+                    <h2 id="sales-yearly" style="color:var(--line-green); font-size:1.8rem; font-weight:bold;">0 ฿</h2>
+                </div>
+            </div>
+
+            <!-- ยอดขายรายเดือน (แก้ไขได้ + บอกเวลาที่แก้ไข) -->
+            <div class="organic-box sales-editor" style="background: #FFF; margin-top: 18px;">
+                <div class="sales-editor-head">
+                    <h3 data-th="ยอดขายรายเดือน (แก้ไขได้)" data-en="Monthly Sales (Editable)">ยอดขายรายเดือน (แก้ไขได้)</h3>
+                    <div class="sales-year-nav">
+                        <button type="button" class="page-btn" onclick="changeSalesYear(-1)" title="ปีก่อนหน้า">‹</button>
+                        <strong id="sales-year-label">-</strong>
+                        <button type="button" class="page-btn" onclick="changeSalesYear(1)" title="ปีถัดไป">›</button>
+                    </div>
+                </div>
+
+                <div id="sales-chart" class="sales-chart"></div>
+
+                <div class="sales-table-wrap">
+                    <table class="organic-table sales-table">
+                        <thead>
+                            <tr>
+                                <th data-th="เดือน" data-en="Month">เดือน</th>
+                                <th data-th="ยอดจากระบบ" data-en="System total">ยอดจากระบบ</th>
+                                <th data-th="ยอดที่แก้ไข (฿)" data-en="Edited total (฿)">ยอดที่แก้ไข (฿)</th>
+                                <th data-th="แก้ไขเมื่อ" data-en="Edited on">แก้ไขเมื่อ</th>
+                                <th data-th="จัดการ" data-en="Action">จัดการ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="salesMonthTableBody"></tbody>
+                        <tfoot>
+                            <tr>
+                                <td data-th="รวมทั้งปี" data-en="Year total"><strong>รวมทั้งปี</strong></td>
+                                <td id="sales-total-auto">-</td>
+                                <td id="sales-total-effective" colspan="3" style="text-align:left;">-</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <p class="sales-note" data-th="ช่องว่าง = ใช้ยอดจากระบบ · กรอกตัวเลขแล้วกด บันทึก เพื่อแก้ไข (ระบบจะบันทึกวันเวลาที่แก้ไข) · กด ล้าง เพื่อกลับไปใช้ยอดจากระบบ" data-en="Blank = use system total · Enter a number and press Save to edit (the edit time is recorded) · Press Reset to go back to the system total">ช่องว่าง = ใช้ยอดจากระบบ · กรอกตัวเลขแล้วกด บันทึก เพื่อแก้ไข (ระบบจะบันทึกวันเวลาที่แก้ไข) · กด ล้าง เพื่อกลับไปใช้ยอดจากระบบ</p>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="organic-footer">
+            <div class="footer-content">
+                <h2 style="font-family: 'DM Serif Display', serif; font-size: 2.2rem; margin-bottom: 10px;">25hourswithnails</h2>
+                <p data-th="ALL OF UR FAV CORE UNIVERSE" data-en="ALL OF UR FAV CORE UNIVERSE">ALL OF UR FAV CORE UNIVERSE</p>
+                <p class="mt-10">LINE: @25hourswithnails | IG: @25hourswithnails</p>
+                <p style="font-size: 0.85rem; color:#666; margin-top:5px;" data-th="ที่อยู่หน้าร้าน: ซอยโต้งพรรณา ต.ในเมือง อ.เมือง จ.ขอนแก่น 40000 (เวลาทำการ 09:00 - 21:00 น.)" data-en="Salon Address: Soi Tongpanna, Muang, Khon Kaen 40000 (09:00 AM - 09:00 PM)">ที่อยู่หน้าร้าน: ซอยโต้งพรรณา ต.ในเมือง อ.เมือง จ.ขอนแก่น 40000 (เวลาทำการ 09:00 - 21:00 น.)</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Modal: ตะกร้าสินค้า -->
+    <div id="cartModal" class="modal-overlay" style="display:none;">
+        <div class="organic-box modal-content" style="max-width: 520px; max-height: 90vh; overflow-y: auto;">
+            <h3 class="text-center mb-10" style="font-size: 1.4rem;" data-th="ตะกร้าสินค้าเล็บปลอม" data-en="Shopping Cart">ตะกร้าสินค้าเล็บปลอม</h3>
+            
+            <div style="background: var(--bg-cream); border: 2px solid var(--line-green); padding: 10px 15px; border-radius: 15px; margin-bottom: 15px;">
+                <label style="font-size: 0.85rem; font-weight: bold; display: block; margin-bottom: 4px;" data-th="ค้นหาออเดอร์ค้างชำระ ด้วยเบอร์โทร:" data-en="Search pending orders by phone:">ค้นหาออเดอร์ค้างชำระ ด้วยเบอร์โทร:</label>
+                <div style="display: flex; gap: 8px;">
+                    <input type="tel" id="cart_search_phone" class="pill-input" pattern="[0-9]{9,10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="กรอกเบอร์โทรศัพท์" style="padding: 6px 12px; font-size: 0.9rem;">
+                    <button class="pill-btn" onclick="fetchUserPendingPaymentsByInput()" style="padding: 6px 15px; font-size: 0.85rem; white-space: nowrap;" data-th="ค้นหา" data-en="Search">ค้นหา</button>
+                </div>
+            </div>
+
+            <div id="pendingPaymentSection" style="display:none; background: #FFF3CD; border: 2px solid #FFEBAA; padding: 12px; border-radius: 15px; margin-bottom: 15px;">
+                <h4 style="color:#856404; font-size: 0.95rem; margin-bottom: 8px; font-weight: bold;" data-th="รายการ Custom ที่ร้านอนุมัติแล้ว (ค้างชำระ)" data-en="Approved Custom Items (Pending Payment)">รายการ Custom ที่ร้านอนุมัติแล้ว (ค้างชำระ)</h4>
+                <div id="pendingPaymentItems"></div>
+            </div>
+
+            <h4 style="font-size:1rem; margin-top: 10px; margin-bottom: 5px;" data-th="สินค้าทั่วไปในตะกร้า" data-en="Cart Items">สินค้าทั่วไปในตะกร้า</h4>
+            <div id="cartItemsContainer" style="max-height: 180px; overflow-y: auto; margin-bottom: 15px;"></div>
+            
+            <div class="shipping-section" style="border-top: 2px dashed var(--line-green); padding-top: 10px; margin-bottom: 15px;">
+                <h4 style="font-size:1rem; margin-bottom: 4px;" data-th="ข้อมูลที่อยู่สำหรับจัดส่ง (เล็บปลอม)" data-en="Shipping Address (Press-On)">ข้อมูลที่อยู่สำหรับจัดส่ง (เล็บปลอม)</h4>
+                <p style="font-size: 0.78rem; color:#666; margin-bottom: 8px;" data-th="* ร้านตั้งอยู่ที่ จ.ขอนแก่น (คำนวณค่าส่งอัตโนมัติ: ในจังหวัด 50฿ / นอกจังหวัด 100฿)" data-en="* Auto calculated shipping fee: In Khon Kaen 50 THB / Other provinces 100 THB">* ร้านตั้งอยู่ที่ จ.{{ shop_province }} (ระบบจะคำนวณค่าส่งอัตโนมัติจากจังหวัดที่กรอก: ในจังหวัด 50฿ / นอกจังหวัด 100฿)</p>
+                <div class="form-group mb-10">
+                    <input type="text" id="cart_address" class="pill-input" placeholder="กรอกที่อยู่จัดส่งโดยรายละเอียด (เช่น 123 ม.1 ต.ในเมือง อ.เมือง จ.ขอนแก่น 40000)" onkeyup="autoDetectShippingFee(this.value)">
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.88rem; background: #F8F6F0; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--line-green);">
+                    <span data-th="สถานะค่าจัดส่งที่คำนวณได้:" data-en="Detected Shipping Fee Status:">สถานะค่าจัดส่งที่คำนวณได้:</span>
+                    <strong id="shippingDetectedLabel" style="color:var(--line-green);">ในจังหวัด (50 ฿)</strong>
+                </div>
+                <p id="freeShippingNotice" style="color:var(--accent-green); font-size:0.8rem; font-weight:bold; display:none;" data-th="สิทธิ์ส่งฟรี: ซื้อครบ 1,500 บาท ฟรีค่าจัดส่ง (AUTO APPLY)" data-en="FREE SHIPPING: Orders over 1,500 THB (AUTO APPLY)">
+                    สิทธิ์ส่งฟรี: ซื้อครบ 1,500 บาท ฟรีค่าจัดส่ง (AUTO APPLY)
+                </p>
+            </div>
+
+            <div class="coupon-section mb-15">
+                <div style="display: flex; gap: 8px;">
+                    <input type="text" id="coupon_code" class="pill-input" placeholder="โค้ดส่วนลด (WELCOME10 / REVIEW5)" style="padding: 8px 15px; text-transform: uppercase;">
+                    <button class="pill-btn" onclick="applyCoupon()" style="padding: 8px 18px; white-space: nowrap;" data-th="ใช้โค้ด" data-en="Apply Code">ใช้โค้ด</button>
+                </div>
+                <p id="couponMsg" style="font-size: 0.8rem; margin-top: 4px;"></p>
+            </div>
+
+            <div style="border-top: 2px dashed var(--line-green); padding-top: 10px; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px;">
+                <div style="display:flex; justify-content:space-between;"><span data-th="ราคาสินค้า:" data-en="Subtotal:">ราคาสินค้า:</span><span id="cartSubtotal">0.0 ฿</span></div>
+                <div style="display:flex; justify-content:space-between;"><span data-th="ค่าจัดส่ง:" data-en="Shipping Fee:">ค่าจัดส่ง:</span><span id="cartShippingFee">0.0 ฿</span></div>
+                <div style="display:flex; justify-content:space-between;"><span data-th="ภาษีมูลค่าเพิ่ม VAT (7%):" data-en="VAT (7%):">ภาษีมูลค่าเพิ่ม VAT (7%):</span><span id="cartVAT">0.0 ฿</span></div>
+                <div style="display:flex; justify-content:space-between; color:var(--danger-red);"><span data-th="ส่วนลด:" data-en="Discount:">ส่วนลด:</span><span id="cartDiscount">-0.0 ฿</span></div>
+                <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.2rem; color:var(--line-green); margin-top: 5px;">
+                    <span data-th="ยอดรวมสุทธิ:" data-en="Total Amount:">ยอดรวมสุทธิ:</span><span id="cartTotalPrice">0.0 ฿</span>
+                </div>
+            </div>
+
+            <button class="pill-btn full-width" onclick="checkoutCart()" style="padding: 12px;" data-th="ดำเนินการชำระเงิน" data-en="Proceed to Checkout">ดำเนินการชำระเงิน</button>
+            <button type="button" onclick="closeCartModal()" style="background:none; border:none; color:#888; text-decoration:underline; cursor:pointer; width:100%; margin-top: 10px;" data-th="ปิดหน้าต่าง" data-en="Close">ปิดหน้าต่าง</button>
+        </div>
+    </div>
+
+    <!-- Modal: ติดตามพัสดุ -->
+    <div id="trackingModal" class="modal-overlay" style="display:none;">
+        <div class="organic-box modal-content" style="max-width: 520px; max-height: 90vh; overflow-y: auto;">
+            <h3 class="text-center mb-10" style="font-size: 1.4rem;" data-th="ติดตามพัสดุ & ออเดอร์ของคุณ" data-en="Track Orders & Receipts">ติดตามพัสดุ & ออเดอร์ของคุณ</h3>
+            
+            <div style="background: var(--bg-cream); border: 2px solid var(--line-green); padding: 10px 15px; border-radius: 15px; margin-bottom: 15px;">
+                <label style="font-size: 0.85rem; font-weight: bold; display: block; margin-bottom: 4px;" data-th="ค้นหาพัสดุของคุณ ด้วยเบอร์โทรศัพท์:" data-en="Search by Phone Number:">ค้นหาพัสดุของคุณ ด้วยเบอร์โทรศัพท์:</label>
+                <div style="display: flex; gap: 8px;">
+                    <input type="tel" id="track_search_phone" class="pill-input" pattern="[0-9]{9,10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="กรอกเบอร์โทรศัพท์" style="padding: 6px 12px; font-size: 0.9rem;">
+                    <button class="pill-btn" onclick="fetchTrackingByInput()" style="padding: 6px 15px; font-size: 0.85rem; white-space: nowrap;" data-th="ค้นหาพัสดุ" data-en="Search">ค้นหาพัสดุ</button>
+                </div>
+            </div>
+
+            <div id="modalCustomerTrackingSection" style="background: #E8F4EA; border: 2px solid var(--accent-green); padding: 12px; border-radius: 15px;">
+                <h4 style="color:var(--line-green); font-size: 0.95rem; margin-bottom: 8px; font-weight: bold;" data-th="รายการออเดอร์และคิวจองของคุณ" data-en="Your Orders & Salon Bookings">รายการออเดอร์และคิวจองของคุณ</h4>
+                <div id="modalCustomerTrackingItems">
+                    <p style="color:#888; text-align:center; padding:10px;" data-th="ยังไม่มีรายการสั่งซื้อหรือคิวจอง" data-en="No orders found">ยังไม่มีรายการสั่งซื้อหรือคิวจอง</p>
+                </div>
+            </div>
+
+            <button type="button" onclick="closeTrackingModal()" style="background:none; border:none; color:#888; text-decoration:underline; cursor:pointer; width:100%; margin-top: 15px;" data-th="ปิดหน้าต่าง" data-en="Close">ปิดหน้าต่าง</button>
+        </div>
+    </div>
+
+    <!-- Modal: เลือกไซส์เล็บ -->
+    <div id="sizeSelectModal" class="modal-overlay" style="display:none;">
+        <div class="organic-box modal-content text-center" style="max-width: 380px;">
+            <h3 id="sizeModalTitle" style="font-size: 1.2rem; margin-bottom: 10px;" data-th="เลือกไซส์เล็บปลอม" data-en="Select Nail Size">เลือกไซส์เล็บปลอม</h3>
+            <div class="form-group">
+                <label data-th="เลือกไซส์ *" data-en="Select Size *">เลือกไซส์ *</label>
+                <select id="modal_nail_size" class="pill-input" onchange="toggleCustomSizeInput(this.value)">
+                    <option value="S">Size S</option>
+                    <option value="M" selected>Size M</option>
+                    <option value="L">Size L</option>
+                    <option value="XS">Size XS</option>
+                    <option value="Custom">ระบุไซส์เอง (Custom Size)</option>
+                </select>
+            </div>
+            <div id="customSizeGroup" class="form-group" style="display:none;">
+                <label data-th="กรอกไซส์เล็บรายละเอียด" data-en="Custom Size Details">กรอกไซส์เล็บรายละเอียด</label>
+                <input type="text" id="modal_custom_size_text" class="pill-input" placeholder="เช่น นิ้วโป้ง 1.2cm, ชี้ 0.8cm...">
+            </div>
+            <button class="pill-btn full-width mt-10" onclick="confirmAddToCart()" style="padding: 10px;" data-th="ยืนยันใส่ตะกร้า" data-en="Confirm Add to Cart">ยืนยันใส่ตะกร้า</button>
+            <button type="button" onclick="closeSizeSelectModal()" style="background:none; border:none; color:#888; text-decoration:underline; cursor:pointer; margin-top: 10px;" data-th="ยกเลิก" data-en="Cancel">ยกเลิก</button>
+        </div>
+    </div>
+
+    <!-- Modal: Custom Press-On -->
+    <div id="customEstimateModal" class="modal-overlay" style="display:none;">
+        <div class="organic-box modal-content" style="max-width: 450px;">
+            <h3 class="text-center mb-10" style="font-size: 1.3rem;" data-th="ส่งรูปภาพประเมินราคา Custom" data-en="Submit Custom Design Photo">ส่งรูปภาพประเมินราคา Custom</h3>
+            <form onsubmit="event.preventDefault(); submitCustomEstimate();">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;" class="mb-10">
+                    <input type="text" id="est_fname" class="pill-input" required placeholder="ชื่อจริง *">
+                    <input type="text" id="est_lname" class="pill-input" required placeholder="นามสกุล *">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;" class="mb-10">
+                    <input type="text" id="est_ig_line" class="pill-input" required placeholder="IG / Line ID *">
+                    <input type="tel" id="est_phone" class="pill-input" pattern="[0-9]{9,10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required placeholder="เบอร์โทรศัพท์ *">
+                </div>
+                <div class="form-group mb-10">
+                    <label data-th="เลือกไซส์เล็บ *" data-en="Select Size *">เลือกไซส์เล็บ *</label>
+                    <select id="est_size" class="pill-input" required>
+                        <option value="S">Size S</option>
+                        <option value="M" selected>Size M</option>
+                        <option value="L">Size L</option>
+                        <option value="XS">Size XS</option>
+                        <option value="Custom">Custom Size (ระบุรายละเอียดที่อยู่)</option>
+                    </select>
+                </div>
+                <div class="form-group mb-10">
+                    <label data-th="ที่อยู่จัดส่ง *" data-en="Shipping Address *">ที่อยู่จัดส่ง *</label>
+                    <textarea id="est_address" class="pill-input" style="height: 70px; border-radius: 15px;" required placeholder="กรอกที่อยู่จัดส่งโดยรายละเอียด"></textarea>
+                </div>
+                <div class="form-group">
+                    <label data-th="อัปโหลดรูปภาพแบบเล็บที่ต้องการ *" data-en="Upload Nail Photo *">อัปโหลดรูปภาพแบบเล็บที่ต้องการ *</label>
+                    <input type="file" id="est_file" class="pill-input" accept="image/*" required style="padding:8px 15px;">
+                </div>
+                <button type="submit" class="pill-btn full-width mt-10" style="padding: 12px;" data-th="ส่งรูปให้แอดมินประเมินราคา" data-en="Submit Photo for Price Estimate">ส่งรูปให้แอดมินประเมินราคา</button>
+                <button type="button" onclick="closeCustomEstimateModal()" style="background:none; border:none; color:#888; text-decoration:underline; cursor:pointer; width:100%; margin-top: 10px;" data-th="ยกเลิก" data-en="Cancel">ยกเลิก</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: เข้าสู่ระบบลูกค้า -->
+    <div id="customerLoginModal" class="modal-overlay" style="display:none;">
+        <div class="organic-box modal-content text-center">
+            <h2 style="font-size: 1.4rem; margin-bottom: 10px;" data-th="เข้าสู่ระบบ / สมัครสมาชิกลูกค้า" data-en="Customer Login / Register">เข้าสู่ระบบ / สมัครสมาชิกลูกค้า</h2>
+            
+            <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; font-size: 0.88rem;">
+                <span id="cust-mode-login-btn" class="sub-tab active" onclick="switchCustMode('login')" data-th="เข้าสู่ระบบ" data-en="Login">เข้าสู่ระบบ</span>
+                <span>|</span>
+                <span id="cust-mode-reg-btn" class="sub-tab" onclick="switchCustMode('register')" data-th="สมัครสมาชิกใหม่" data-en="Register">สมัครสมาชิกใหม่</span>
+            </div>
+
+            <form id="form-cust-login" onsubmit="event.preventDefault(); handleCustomerLogin();">
+                <div class="form-group">
+                    <input type="tel" id="login_phone" class="pill-input" pattern="[0-9]{9,10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required placeholder="เบอร์โทรศัพท์ (ตัวเลข 9-10 หลัก)">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="login_pass" class="pill-input" required placeholder="รหัสผ่าน">
+                </div>
+                <p style="font-size: 0.78rem; color: #666; margin-top: -8px; margin-bottom: 12px; text-align: left;" data-th="หากลืมรหัสผ่าน กรุณาติดต่อแอดมินผ่าน LINE: @25hourswithnails" data-en="If you forgot password, contact admin via LINE: @25hourswithnails">
+                    หากลืมรหัสผ่าน กรุณาติดต่อแอดมินผ่าน LINE: @25hourswithnails
+                </p>
+                <button type="submit" class="pill-btn full-width" style="padding: 10px;" data-th="เข้าสู่ระบบสมาชิก" data-en="Login">เข้าสู่ระบบสมาชิก</button>
+            </form>
+
+            <form id="form-cust-reg" onsubmit="event.preventDefault(); handleCustomerRegister();" style="display:none;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                    <input type="text" id="reg_fname" class="pill-input" required placeholder="ชื่อจริง">
+                    <input type="text" id="reg_lname" class="pill-input" required placeholder="นามสกุล">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="reg_ig" class="pill-input" required placeholder="IG หรือ LINE ID">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="reg_phone" class="pill-input" pattern="[0-9]{9,10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required placeholder="เบอร์โทรศัพท์ (ตัวเลข 9-10 หลัก)">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="reg_pass" class="pill-input" required placeholder="ตั้งรหัสผ่านของคุณ">
+                </div>
+                <button type="submit" class="pill-btn full-width" style="padding: 10px;" data-th="ยืนยันสมัครสมาชิก" data-en="Confirm Register">ยืนยันสมัครสมาชิก</button>
+            </form>
+
+            <button type="button" onclick="closeCustomerLoginModal()" style="background:none; border:none; color:#888; text-decoration:underline; cursor:pointer; margin-top: 12px;" data-th="ปิดหน้าต่าง" data-en="Close">ปิดหน้าต่าง</button>
+        </div>
+    </div>
+
+    <!-- Modal: เข้าสู่ระบบแอดมิน -->
+    <div id="adminLoginModal" class="modal-overlay" style="display:none;">
+        <div class="organic-box modal-content text-center">
+            <h3 style="font-size: 1.4rem; margin-bottom: 5px;" data-th="เข้าสู่ระบบสำหรับแอดมิน" data-en="Admin Login">เข้าสู่ระบบสำหรับแอดมิน</h3>
+            <p style="color:#666; font-size: 0.8rem;" class="mb-10" data-th="กรอกรหัสผ่านผู้ดูแลระบบเพื่อจัดการคิวและแคตตาล็อก" data-en="Enter admin password to manage queues and catalog">กรอกรหัสผ่านผู้ดูแลระบบเพื่อจัดการคิวและแคตตาล็อก</p>
+            <form onsubmit="event.preventDefault(); handleAdminLogin();">
+                <div class="form-group">
+                    <input type="password" id="admin_pass" class="pill-input" required placeholder="กรอกรหัสผ่านแอดมิน">
+                </div>
+                <button type="submit" class="pill-btn full-width" style="padding: 10px;" data-th="เข้าสู่ระบบแอดมิน" data-en="Login as Admin">เข้าสู่ระบบแอดมิน</button>
+                <button type="button" onclick="closeAdminLoginModal()" style="background:none; border:none; color:#888; text-decoration:underline; cursor:pointer; margin-top: 12px;" data-th="ปิดหน้าต่าง" data-en="Close">ปิดหน้าต่าง</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: เพิ่ม / แก้ไข สินค้าและบริการ -->
+    <div id="manageServiceModal" class="modal-overlay" style="display:none;">
+        <div class="organic-box modal-content">
+            <h3 id="manageServiceTitle" class="text-center mb-10" style="font-size: 1.2rem;">เพิ่มสินค้า/บริการใหม่</h3>
+            <form id="manageServiceForm" onsubmit="event.preventDefault(); saveServiceItem();">
+                <input type="hidden" id="edit_service_id" value="">
+                <input type="hidden" id="svc_category" value="custom">
+                <div class="form-group">
+                    <label>ชื่อสินค้า / บริการ *</label>
+                    <input type="text" id="svc_name" class="pill-input" required placeholder="เช่น Press-On Set D หรือ ทาสีเจล">
+                </div>
+                <div class="form-group">
+                    <label>ราคา (บาท) *</label>
+                    <input type="number" id="svc_price" class="pill-input" required placeholder="เช่น 350">
+                </div>
+                <div class="form-group">
+                    <label>รูปภาพสินค้า (ถ้ามี)</label>
+                    <input type="file" id="svc_image" class="pill-input" accept="image/*" style="padding: 8px 15px;">
+                </div>
+                <button type="submit" class="pill-btn full-width mt-10" style="padding: 10px;">บันทึกข้อมูล</button>
+                <button type="button" onclick="closeManageServiceModal()" style="background:none; border:none; color:#888; text-decoration:underline; cursor:pointer; width:100%; margin-top: 10px;">ยกเลิก</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: QR Code + แนบสลิป -->
+    <div id="qrModal" class="modal-overlay" style="display:none;">
+        <div class="organic-box modal-content text-center">
+            <h3 style="font-size: 1.4rem; margin-bottom: 5px;" data-th="สแกนชำระเงิน & แนบสลิป" data-en="Scan QR & Upload Slip">สแกนชำระเงิน & แนบสลิป</h3>
+            <p id="qrCustomerName" style="font-size:0.95rem; color:var(--line-green);"></p>
+            <p id="qrServiceName" style="color:#555; font-size:0.88rem;"></p>
+            <p id="qrAmountText" style="font-size:1.6rem; font-weight:bold; color:var(--line-green); margin: 5px 0;"></p>
+            <p id="qrNoteText" style="font-size:0.78rem; color:#A33A3A; margin-bottom:10px;"></p>
+            
+            <img id="qrImageModal" src="" class="qr-img-box" alt="PromptPay QR Code">
+            
+            <div style="margin-top: 15px; text-align: left;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px; font-size:0.85rem;" data-th="แนบไฟล์สลิปชำระเงิน *" data-en="Upload Payment Slip *">แนบไฟล์สลิปชำระเงิน *</label>
+                <input type="file" id="slip_file" class="pill-input" accept="image/*" style="padding: 8px 15px;" required>
+            </div>
+
+            <button class="pill-btn full-width mt-10" onclick="submitFinalOrder()" style="padding: 10px; margin-top: 15px;" data-th="ยืนยันสลิปชำระเงิน" data-en="Confirm Payment Slip">ยืนยันสลิปชำระเงิน</button>
+            <button type="button" onclick="closeQRModal()" style="background:none; border:none; color:#888; text-decoration:underline; cursor:pointer; margin-top: 10px;" data-th="ยกเลิก / ปิด" data-en="Cancel / Close">ยกเลิก / ปิด</button>
+        </div>
+    </div>
+
+    <!-- Modal: ใบเสร็จ / สลิปลูกค้า -->
+    <div id="receiptModal" class="modal-overlay" style="display:none;">
+        <div class="organic-box modal-content text-center" style="max-width: 400px; background: #FFF; border: 3px solid var(--line-green);">
+            <div class="receipt-header">
+                <h2 style="font-family: 'DM Serif Display', serif; font-size: 1.8rem;">25hourswithnails</h2>
+                <p style="font-size:0.8rem; color:#555;" data-th="ใบเสร็จรับเงิน / สลิปยืนยันออเดอร์" data-en="Official Digital Receipt">ใบเสร็จรับเงิน / สลิปยืนยันออเดอร์</p>
+                <hr style="border:0; border-top: 1px dashed var(--line-green); margin: 8px 0;">
+            </div>
+            
+            <div class="receipt-body" style="text-align: left; font-size: 0.85rem; line-height: 1.5;">
+                <p><strong data-th="เลขที่ออเดอร์:" data-en="Order ID:">เลขที่ออเดอร์:</strong> <span id="rec_id">#0000</span></p>
+                <p><strong data-th="ชื่อลูกค้า:" data-en="Customer:">ชื่อลูกค้า:</strong> <span id="rec_name">-</span></p>
+                <p><strong data-th="เบอร์โทร:" data-en="Phone:">เบอร์โทร:</strong> <span id="rec_phone">-</span></p>
+                <p><strong data-th="IG / Line:" data-en="IG / Line:">IG / Line:</strong> <span id="rec_ig">-</span></p>
+                <p><strong data-th="รายการสั่งซื้อ / บริการ:" data-en="Service / Items:">รายการสั่งซื้อ / บริการ:</strong> <span id="rec_service">-</span></p>
+                <p><strong data-th="ไซส์เล็บ:" data-en="Size:">ไซส์เล็บ:</strong> <span id="rec_size">-</span></p>
+                <p><strong data-th="ที่อยู่จัดส่ง / สถานที่:" data-en="Address / Location:">ที่อยู่จัดส่ง / สถานที่:</strong> <span id="rec_address">-</span></p>
+                <p><strong data-th="วัน / เวลา จอง:" data-en="Date / Time:">วัน / เวลา จอง:</strong> <span id="rec_datetime">-</span></p>
+                <p><strong data-th="สถานะชำระเงิน:" data-en="Payment Status:">สถานะชำระเงิน:</strong> <span style="color:var(--line-green); font-weight:bold;" data-th="ชำระเงินแล้ว (แนบสลิป)" data-en="Paid (Slip Attached)">ชำระเงินแล้ว (แนบสลิป)</span></p>
+                <p id="rec_vat_row" style="display:none;"><strong>VAT (7%):</strong> <span id="rec_vat">0.0</span> ฿</p>
+                <hr style="border:0; border-top: 1px dashed var(--line-green); margin: 8px 0;">
+                <p style="font-size: 1.1rem; font-weight: bold; text-align: right; color: var(--line-green);">
+                    <span data-th="ยอดรวมสุทธิ:" data-en="Total Paid:">ยอดรวมสุทธิ:</span> <span id="rec_amount">0.0</span> ฿
+                </p>
+            </div>
+
+            <div class="receipt-footer mt-10">
+                <button class="pill-btn full-width" onclick="window.print()" style="padding: 8px; margin-bottom: 6px;" data-th="พิมพ์ / บันทึกสลิปใบเสร็จ" data-en="Print / Save Receipt">พิมพ์ / บันทึกสลิปใบเสร็จ</button>
+                <button type="button" onclick="closeReceiptModal()" style="background:none; border:none; color:#888; text-decoration:underline; cursor:pointer;" data-th="เสร็จสิ้น / ปิด" data-en="Close">เสร็จสิ้น / ปิด</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
